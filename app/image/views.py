@@ -16,6 +16,8 @@ from core.models import (
     Item,
     Camera,
 )
+from image.authentication import ConstantTokenAuthentication
+# from image.permissions import ConstantTokenPermission
 
 from image import serializers
 
@@ -23,7 +25,7 @@ from image import serializers
 class ImageViewSet(viewsets.ModelViewSet):
     """View for manage image APIs."""
     serializer_class = serializers.ImageDetailSerializer
-    authentication_classes = [TokenAuthentication]
+    authentication_classes = [ConstantTokenAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Image.objects.all()
 
@@ -62,8 +64,7 @@ class ProductionLineViewSet(viewsets.ModelViewSet):
 
 class ItemViewSet(viewsets.ModelViewSet):
     """View for manage item APIS."""
-    serializer_class = serializers.Item
+    serializer_class = serializers.ItemSerializer
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Item.objects.all()
-

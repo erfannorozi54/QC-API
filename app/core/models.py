@@ -31,7 +31,7 @@ class UserManager(BaseUserManager):
         """Create, save and return new user."""
         if not email:
             raise ValueError('User must have an email address.')
-        user = self.mdodel(email.normalize_email(email), **extra_fields)
+        user = self.model(email=self.normalize_email(email), **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
 
@@ -80,7 +80,7 @@ class Camera(models.Model):
         on_delete=models.CASCADE,
         related_name='cameras',
     )
-    product_line = models.ForeignKey(
+    production_line = models.ForeignKey(
         'ProductionLine',
         on_delete=models.CASCADE,
         related_name='cameras'
@@ -98,11 +98,10 @@ class Camera(models.Model):
 
 class Item(models.Model):
     """Represents an object that is photographed from multiple angles"""
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     index = models.BigIntegerField()
     
     def __str__(self):
-        return f"Item {self.id}"
+        return f"Item {self.index}"
     
 
 class Image(models.Model):

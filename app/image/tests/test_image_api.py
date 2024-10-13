@@ -71,17 +71,17 @@ class PublicImageAPITest(TestCase):
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
 
 
-class PrivateImageAPITest(TestCase):
-    """Test authenticated API requests."""
+# class PrivateImageAPITest(TestCase):
+#     """Test authenticated API requests."""
 
-    def setUp(self) -> None:
-        self.client = APIClient()
-        self.user = create_user(
-            email='user@example.com',
-            password='userpassword'
-        )
-        self.client.force_login(self.user)
+#     def setUp(self) -> None:
+#         self.client = APIClient()
+#         self.user = create_user(
+#             email='user@example.com',
+#             password='userpassword'
+#         )
+#         self.client.force_login(self.user)
 
-    def test_retrieve_images(self):
-        """Test retrieving a list of images."""
-        pass
+#     # def test_retrieve_images(self):
+#     #     """Test retrieving a list of images."""
+#     #     pass
